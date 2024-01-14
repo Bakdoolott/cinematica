@@ -1,6 +1,6 @@
 package com.mega.cinematica.controllers;
 
-import com.mega.cinematica.models.dto.CreateSeatsRequest;
+import com.mega.cinematica.models.dto.requests.CreateSeatsRequest;
 import com.mega.cinematica.services.SeatsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import java.util.List;
 public class SeatsController {
     private final SeatsService seatsService;
 
-    @PostMapping("/create")
+    @PostMapping("/add")
     ResponseEntity<?> createSeats(@RequestBody CreateSeatsRequest request){
         return new ResponseEntity<>(seatsService.createSeats(request), HttpStatus.CREATED);
     }

@@ -1,6 +1,6 @@
 package com.mega.cinematica.controllers;
 
-import com.mega.cinematica.models.dto.CreateHallRequest;
+import com.mega.cinematica.models.dto.requests.CreateSeatsRequest;
 import com.mega.cinematica.models.enums.HallType;
 import com.mega.cinematica.services.HallService;
 import lombok.RequiredArgsConstructor;

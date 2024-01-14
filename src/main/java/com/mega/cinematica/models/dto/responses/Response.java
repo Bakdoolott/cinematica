@@ -1,4 +1,4 @@
-package com.mega.cinematica.models.dto;
+package com.mega.cinematica.models.dto.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

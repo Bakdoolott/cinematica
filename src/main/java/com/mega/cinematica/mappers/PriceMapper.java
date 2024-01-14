@@ -1,11 +1,11 @@
 package com.mega.cinematica.mappers;
 
 import com.mega.cinematica.base.BaseMapper;
-import com.mega.cinematica.models.entity.FilmHall;
-import com.mega.cinematica.models.dto.entityDto.FilmHallDto;
+import com.mega.cinematica.models.dto.entityDto.PriceDto;
+import com.mega.cinematica.models.entity.Price;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 
 @Mapper(injectionStrategy = InjectionStrategy.CONSTRUCTOR, componentModel = "spring")
-public interface FilmHallMapper extends BaseMapper<FilmHall, FilmHallDto> {
+public interface PriceMapper extends BaseMapper<Price, PriceDto> {
 }

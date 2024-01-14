@@ -1,13 +1,15 @@
 package com.mega.cinematica.base;
 
+import com.mega.cinematica.exceptions.NotFoundException;
 import com.mega.cinematica.mappers.CycleAvoidingMappingContext;
+import com.mega.cinematica.utils.ResourceBundle;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.MappedSuperclass;
 import java.util.List;
 @MappedSuperclass
-public abstract class BaseServiceImpl<E extends BaseEntity, ED extends BaseEntityDto, R extends BaseRepository<E>,
-        M extends BaseMapper<E, ED>> implements BaseService<ED> {
+public abstract class BaseServiceImpl<E extends BaseEntity, DTO extends BaseEntityDto, R extends BaseRepository<E>,
+        M extends BaseMapper<E, DTO>> implements BaseService<DTO> {
     protected R repository;
     protected M mapper;
     @Autowired
@@ -19,28 +21,31 @@ public abstract class BaseServiceImpl<E extends BaseEntity, ED extends BaseEntit
     }
 
     @Override
-    public ED save(ED e) {
-        E e1 = mapper.toEntity(e, context);
-        return mapper.toDto(repository.save(e1), context);
+    public DTO saveEntity(DTO e) {
+        E entity = repository.save(mapper.toEntity(e, context));
+        e = mapper.toDto(entity, context);
+        return e;
     }
 
     @Override
-    public void delete(ED e) {
+    public void delete(DTO e) {
         repository.delete(mapper.toEntity(e, context));
     }
 
     @Override
-    public ED update(ED e) {
+    public DTO update(DTO e) {
         return mapper.toDto(repository.saveAndFlush(mapper.toEntity(e, context)), context);
     }
 
     @Override
-    public ED findById(Long id) {
-        return mapper.toDto(repository.findById(id).orElse(null), context);
+    public DTO findById(Long id) {
+        E e = repository.findById(id).orElse(null);
+        DTO dto = mapper.toDto(e, context);
+        return dto;
     }
 
     @Override
-    public List<ED> findAll() {
+    public List<DTO> findAll(){
         return mapper.toDtos(repository.findAll(), context);
     }
 }

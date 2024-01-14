@@ -9,10 +9,11 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class FilmHallDto extends BaseEntityDto {
-    Long id;
+@ToString
+public class PriceDto extends BaseEntityDto {
+    Integer standardPrice;
+    Integer priceForChildren;
+    Integer priceForStudents;
 
-    FilmDto film;
-
-    HallDto hall;
+    SessionDto session;
 }

@@ -14,14 +14,12 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Hall extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
+    @Column(nullable = false)
     String name;
     @Enumerated(value = EnumType.STRING)
     HallType hallType;
 
     @ManyToOne
-    @JoinColumn(name = "id_cinema_theater")
+    @JoinColumn(name = "id_cinema")
     Cinema cinema;
 }

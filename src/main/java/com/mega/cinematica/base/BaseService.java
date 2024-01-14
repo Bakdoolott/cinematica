@@ -2,10 +2,10 @@ package com.mega.cinematica.base;
 
 import java.util.List;
 
-public interface BaseService<ED extends BaseEntityDto>{
-    ED save(ED e);
-    void delete(ED e);
-    ED update(ED e);
-    ED findById(Long id);
-    List<ED> findAll();
+public interface BaseService<DTO extends BaseEntityDto>{
+    DTO saveEntity(DTO e);
+    void delete(DTO e);
+    DTO update(DTO e);
+    DTO findById(Long id);
+    List<DTO> findAll();
 }

@@ -1,9 +1,17 @@
 package com.mega.cinematica.models.dto.entityDto;
 
 import com.mega.cinematica.base.BaseEntityDto;
+import com.mega.cinematica.models.entity.Film;
+import com.mega.cinematica.models.entity.Hall;
+import com.mega.cinematica.models.entity.OrderSession;
+import com.mega.cinematica.models.entity.Price;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -12,12 +20,18 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
 public class SessionDto extends BaseEntityDto {
-    Long id;
-    Date date;
-    LocalTime time;
-    int discount;
-    int cost;
+    LocalDate date;
+    LocalTime startTime;
+    LocalTime endTime;
 
-    FilmHallDto filmHall;
+    Boolean childPrice;
+    Boolean studentPrice;
+
+    HallDto hall;
+
+    FilmDto film;
+
+    PriceDto price;
 }

@@ -6,6 +6,9 @@ import javax.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Entity
 @Table(name = "tb_film")
 @Getter
@@ -13,13 +16,16 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
 public class Film extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
+    @Column(nullable = false, unique = true)
     String name;
     String description;
     String logoUrl;
+    String pg;
+    LocalDate releaseDate;
     @Enumerated(value = EnumType.STRING)
     FilmType format;
+    @Column(nullable = false)
+    LocalTime lasting;
 }

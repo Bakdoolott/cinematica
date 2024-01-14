@@ -3,8 +3,11 @@ package com.mega.cinematica.models.entity;
 import javax.persistence.*;
 
 import com.mega.cinematica.base.BaseEntity;
+import com.mega.cinematica.models.dto.RowAndSeats;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_order")
@@ -14,9 +17,5 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Order extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
     int totalPrice;
-    Integer uniqueNumber;
 }

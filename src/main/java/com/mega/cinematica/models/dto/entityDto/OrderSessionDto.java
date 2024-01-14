@@ -1,6 +1,8 @@
 package com.mega.cinematica.models.dto.entityDto;
 
 import com.mega.cinematica.base.BaseEntityDto;
+import com.mega.cinematica.models.entity.Order;
+import com.mega.cinematica.models.entity.Session;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -10,11 +12,10 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrderSessionDto extends BaseEntityDto {
-    Long id;
-    Byte row;
-    Byte place;
-
     SessionDto session;
 
     OrderDto order;
+
+    Byte row;
+    Byte place;
 }

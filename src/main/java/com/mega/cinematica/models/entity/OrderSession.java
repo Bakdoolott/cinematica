@@ -14,17 +14,14 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrderSession extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
-    Byte row;
-    Byte place;
-
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_session")
     Session session;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_order")
     Order order;
+
+    Byte row;
+    Byte place;
 }

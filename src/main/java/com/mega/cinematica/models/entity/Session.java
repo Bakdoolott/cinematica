@@ -6,8 +6,8 @@ import com.mega.cinematica.base.BaseEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "tb_session")
@@ -16,16 +16,24 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
 public class Session extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long id;
-    Date date;
-    LocalTime time;
-    int cost;
-    int discount;
+    LocalDate date;
+    LocalTime startTime;
+    LocalTime endTime;
 
-    @OneToOne
-    @JoinColumn(name = "id_films_hall")
-    FilmHall filmHall;
+    Boolean childPrice;
+    Boolean studentPrice;
+
+    @ManyToOne
+    @JoinColumn(name = "id_hall")
+    Hall hall;
+
+    @ManyToOne
+    @JoinColumn(name = "id_films")
+    Film film;
+
+    @OneToOne(mappedBy = "session")
+    Price price;
+
 }
