@@ -2,12 +2,14 @@ package com.mega.cinematica.services.impl;
 
 import com.mega.cinematica.base.BaseServiceImpl;
 import com.mega.cinematica.dao.FilmRepository;
+import com.mega.cinematica.exceptions.NotFoundException;
 import com.mega.cinematica.exceptions.NotSavedException;
 import com.mega.cinematica.exceptions.RepeatedValueException;
 import com.mega.cinematica.exceptions.UnexpectedNewException;
 import com.mega.cinematica.mappers.FilmMapper;
 import com.mega.cinematica.microservices.FileService;
 import com.mega.cinematica.models.dto.responses.FilmResponse;
+import com.mega.cinematica.models.dto.responses.FilmsResponse;
 import com.mega.cinematica.models.entity.Film;
 import com.mega.cinematica.models.dto.requests.CreateFilmRequest;
 import com.mega.cinematica.models.dto.responses.Response;
@@ -15,12 +17,14 @@ import com.mega.cinematica.models.dto.entityDto.FilmDto;
 import com.mega.cinematica.models.enums.FilmType;
 import com.mega.cinematica.services.FilmService;
 import com.mega.cinematica.utils.ResourceBundle;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
 public class FilmServiceImpl extends BaseServiceImpl<Film, FilmDto, FilmRepository, FilmMapper> implements FilmService {
@@ -79,5 +83,21 @@ public class FilmServiceImpl extends BaseServiceImpl<Film, FilmDto, FilmReposito
     @Override
     public Response deleteFilm(Long id) {
         return null;
+    }
+
+    @Override
+    public List<FilmsResponse> getMovies(Integer limit, Integer offset) {
+        return repository.getMovies(PageRequest.of(offset, limit));
+    }
+
+    @Override
+    public List<FilmDto> findByHallAndDate(Long hallId, LocalDate parsedDate) {
+        List<FilmDto> filmDtos;
+        try {
+            filmDtos = mapper.toDtos(repository.findByHallAndDate(hallId, parsedDate), context);
+        }catch (Exception e){
+            throw new NotFoundException(ResourceBundle.periodMessages("notFoundException"));
+        }
+        return filmDtos;
     }
 }

@@ -13,6 +13,7 @@ import com.mega.cinematica.models.dto.entityDto.SessionDto;
 import com.mega.cinematica.models.dto.requests.CreateSessionRequest;
 import com.mega.cinematica.models.dto.responses.PriceResponse;
 import com.mega.cinematica.models.dto.responses.SessionResponse;
+import com.mega.cinematica.models.entity.OrderSession;
 import com.mega.cinematica.models.entity.Session;
 import com.mega.cinematica.services.FilmService;
 import com.mega.cinematica.services.HallService;
@@ -25,6 +26,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
 public class SessionServiceImpl extends BaseServiceImpl<Session, SessionDto, SessionRepository,
@@ -106,4 +108,6 @@ public class SessionServiceImpl extends BaseServiceImpl<Session, SessionDto, Ses
 
         return sessionResponse;
     }
+
+
 }

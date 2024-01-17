@@ -25,7 +25,7 @@ public class Session extends BaseEntity {
     Boolean childPrice;
     Boolean studentPrice;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_hall")
     Hall hall;
 

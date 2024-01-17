@@ -1,12 +1,15 @@
 package com.mega.cinematica.dao;
 
 import com.mega.cinematica.base.BaseRepository;
+import com.mega.cinematica.models.dto.entityDto.SessionDto;
+import com.mega.cinematica.models.entity.OrderSession;
 import com.mega.cinematica.models.entity.Session;
 import feign.Param;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public interface SessionRepository extends BaseRepository<Session> {
     @Query("select s from Session s where s.hall.id = :hallId and s.date = :date "
@@ -18,4 +21,5 @@ public interface SessionRepository extends BaseRepository<Session> {
                        @Param("startTime") LocalTime startTime,
                        @Param("endTime") LocalTime endTime,
                        @Param("hallId") Long hallId);
+
 }

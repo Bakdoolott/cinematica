@@ -19,6 +19,9 @@ public class FilmController {
         return new ResponseEntity<>(filmService.createFilm(request, filmType), HttpStatus.CREATED);
     }
 
-//    @GetMapping("/get/movies")
-//    ResponseEntity<?> getMovies(@RequestParam )
+    @GetMapping("/get/movies")
+    ResponseEntity<?> getMovies(@RequestParam Integer limit,
+                                @RequestParam Integer offset){
+        return new ResponseEntity<>(filmService.getMovies(limit, offset), HttpStatus.OK);
+    }
 }

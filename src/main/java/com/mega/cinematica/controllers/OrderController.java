@@ -1,7 +1,6 @@
 package com.mega.cinematica.controllers;
 
 import com.mega.cinematica.models.dto.requests.OrderRequest;
-import com.mega.cinematica.models.enums.PriceTypes;
 import com.mega.cinematica.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

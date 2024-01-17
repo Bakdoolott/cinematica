@@ -28,12 +28,10 @@ import java.util.Set;
 @Service
 public class OrderServiceImpl extends BaseServiceImpl<Order, OrderDto,
         OrderRepository, OrderMapper> implements OrderService {
-    private final SeatsService seatsService;
     private final SessionService sessionService;
     private final OrderSessionService orderSessionService;
-    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper, SeatsService seatsService, SessionService sessionService, OrderSessionService orderSessionService) {
+    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper, SessionService sessionService, OrderSessionService orderSessionService) {
         super(orderRepository, orderMapper);
-        this.seatsService = seatsService;
         this.sessionService = sessionService;
         this.orderSessionService = orderSessionService;
     }

@@ -19,7 +19,7 @@ public class Hall extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     HallType hallType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_cinema")
     Cinema cinema;
 }

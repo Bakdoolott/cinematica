@@ -26,4 +26,13 @@ public class HallController {
         return new ResponseEntity<>(hallService.deleteHall(id), HttpStatus.OK);
     }
 
+    @GetMapping("/get-imax")
+    ResponseEntity<?> getImax(@RequestParam String date){
+        return new ResponseEntity<>(hallService.getHallByType(date, "imax"), HttpStatus.OK);
+    }
+
+    @GetMapping("/get-atmos")
+    ResponseEntity<?> getAtmos(@RequestParam String date){
+        return new ResponseEntity<>(hallService.getHallByType(date, "atmos"), HttpStatus.OK);
+    }
 }
